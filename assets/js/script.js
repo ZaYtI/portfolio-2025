@@ -1,23 +1,17 @@
-
-// element toggle function
 const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
 
-// sidebar variables
 const sidebar = document.querySelector("[data-sidebar]");
 const sidebarBtn = document.querySelector("[data-sidebar-btn]");
 
-// sidebar toggle functionality for mobile
 sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); });
 
-// custom select variables
 const select = document.querySelector("[data-select]");
 const selectItems = document.querySelectorAll("[data-select-item]");
-const selectValue = document.querySelector("[data-selecct-value]");
+const selectValue = document.querySelector("[data-select-value]");
 const filterBtn = document.querySelectorAll("[data-filter-btn]");
 
 select.addEventListener("click", function () { elementToggleFunc(this); });
 
-// add event in all select items
 for (const element of selectItems) {
   element.addEventListener("click", function () {
 
@@ -29,32 +23,27 @@ for (const element of selectItems) {
   });
 }
 
-// filter variables
-const filterItems = document.querySelectorAll("[data-filter-item]");
+const categorieFilter = document.querySelectorAll("[categorie-filter-item]");
 
 const filterFunc = function (selectedValue) {
-
-  for (const element of filterItems) {
-
-    if (selectedValue === "all") {
+  for (const element of categorieFilter) {
+    if (selectedValue === "tout") {
       element.classList.add("active");
     } else if (selectedValue === element.dataset.category) {
       element.classList.add("active");
     } else {
       element.classList.remove("active");
     }
-
   }
 
 }
 
-// add event in all filter button items for large screen
 let lastClickedBtn = filterBtn[0];
 
 for (const element of filterBtn) {
 
   element.addEventListener("click", function () {
-
+    console.log(selectValue)
     let selectedValue = this.innerText.toLowerCase();
     selectValue.innerText = this.innerText;
     filterFunc(selectedValue);
@@ -66,17 +55,12 @@ for (const element of filterBtn) {
   });
 
 }
-
-// contact form variables
 const form = document.querySelector("[data-form]");
 const formInputs = document.querySelectorAll("[data-form-input]");
 const formBtn = document.querySelector("[data-form-btn]");
 
-// add event to all form input field
 for (const element of formInputs) {
   element.addEventListener("input", function () {
-
-    // check form validation
     if (form.checkValidity()) {
       formBtn.removeAttribute("disabled");
     } else {
@@ -86,11 +70,8 @@ for (const element of formInputs) {
   });
 }
 
-// page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
-
-// add event to all nav link
 for (const element of navigationLinks) {
   element.addEventListener("click", function () {
 
